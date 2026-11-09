@@ -1,0 +1,67 @@
+:root {
+    --curtain-color: #8b0000;
+    --curtain-dark: #4a0000;
+    --gold: #ffd700;
+    --screen-bg: #0d1117;
+    --card-bg: #161b22;
+    --text-color: #f0f6fc;
+    --accent: #d97706;
+    --correct: #22c55e;
+    --wrong: #ef4444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #050505; color: var(--text-color);
+    min-height: 100vh; display: flex; justify-content: center; align-items: center;
+    overflow: hidden; position: relative;
+}
+.curtain-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; pointer-events: none; display: flex; }
+.curtain {
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, var(--curtain-dark) 0%, var(--curtain-color) 20%, var(--curtain-dark) 40%, var(--curtain-color) 60%, var(--curtain-dark) 80%, var(--curtain-color) 100%);
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.curtain.left { transform: translateX(0); }
+.curtain.right { transform: translateX(0); }
+body.open .curtain.left { transform: translateX(-100%); }
+body.open .curtain.right { transform: translateX(100%); }
+.start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 101; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.4); transition: opacity 0.8s ease; }
+body.open .start-overlay { opacity: 0; pointer-events: none; }
+.start-btn {
+    background: linear-gradient(135deg, #d97706, #b45309); color: #fff; border: 2px solid var(--gold);
+    padding: 18px 45px; font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; border-radius: 50px;
+    cursor: pointer; box-shadow: 0 0 25px rgba(217, 119, 6, 0.6); transition: all 0.3s ease;
+}
+.start-btn:hover { transform: scale(1.08); box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); }
+.cinema-screen {
+    background-color: var(--screen-bg); border: 8px solid #222; border-radius: 20px;
+    width: 90%; max-width: 650px; padding: 30px; box-shadow: 0 0 50px rgba(255, 255, 255, 0.05), inset 0 0 30px rgba(0,0,0,0.8);
+    position: relative; z-index: 1;
+}
+.quiz-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #333; padding-bottom: 15px; margin-bottom: 25px; }
+.category-tag { background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; }
+.progress-text { color: #8b949e; font-size: 0.95rem; }
+.question-text { font-size: 1.25rem; line-height: 1.6; margin-bottom: 25px; min-height: 70px; }
+.options-grid { display: grid; gap: 12px; }
+.option-btn {
+    background-color: var(--card-bg); color: var(--text-color); border: 1px solid #30363d;
+    padding: 15px 20px; border-radius: 10px; font-size: 1rem; text-align: left; cursor: pointer; transition: all 0.2s ease;
+}
+.option-btn:hover:not([disabled]) { border-color: var(--accent); background-color: #21262d; transform: translateX(4px); }
+.option-btn.correct { background-color: var(--correct) !important; border-color: var(--correct) !important; color: #fff; }
+.option-btn.wrong { background-color: var(--wrong) !important; border-color: var(--wrong) !important; color: #fff; }
+.next-btn {
+    width: 100%; margin-top: 25px; padding: 14px; background: var(--accent); color: white;
+    border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; display: none; transition: background 0.2s ease;
+}
+.next-btn:hover { background: #b45309; }
+.results-box { display: none; text-align: center; padding: 20px 0; }
+.results-box h2 { font-size: 2rem; margin-bottom: 15px; color: var(--gold); }
+.score-display { font-size: 3.5rem; font-weight: bold; margin: 20px 0; color: var(--accent); }
+.replay-btn {
+    background: linear-gradient(135deg, #d97706, #b45309); color: white; border: 1px solid var(--gold);
+    padding: 12px 30px; border-radius: 25px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s ease;
+}
+.replay-btn:hover { transform: scale(1.05); }
