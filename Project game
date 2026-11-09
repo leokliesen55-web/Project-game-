@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Trivia Night</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="curtain-container">
+        <div class="curtain left"></div>
+        <div class="curtain right"></div>
+    </div>
+    <div class="start-overlay" id="startOverlay">
+        <button class="start-btn" onclick="startShow()">🎬 START SHOW</button>
+    </div>
+    <div class="cinema-screen">
+        <div id="quizBox">
+            <div class="quiz-header">
+                <span class="category-tag" id="categoryTag">Movie</span>
+                <span class="progress-text" id="progressText">Question 1 of 7</span>
+            </div>
+            <div class="question-text" id="questionText">Loading question...</div>
+            <div class="options-grid" id="optionsGrid"></div>
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question 🍿</button>
+        </div>
+        <div class="results-box" id="resultsBox">
+            <h2>THE END 🎭</h2>
+            <p>Your Final Score:</p>
+            <div class="score-display" id="scoreDisplay">0 / 7</div>
+            <button class="replay-btn" onclick="restartQuiz()">Watch Again 🔄</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
